@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Todolist</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- <div class="form-item">
+            <label for="name">Nama</label>
+            <input type="text" name="name" id="inputName" class="inputTxt">
+        </div>
+        <div class="form-item">
+            <label for="job">Jabatan</label>
+            <input type="text" name="job" id="inputJob" class="inputTxt">
+        </div> -->
+        <div class="form-item">
+            <label for="todo">Kegiatan</label>
+            <textarea name="todo" id="inputTodo" class="inputTxt inputTodo"></textarea>
+        </div>
+        <div class="form-item">
+            <label for="priority">Level Prioritas</label>
+            <select name="priority" id="inputPriority" class="inputTxt inputSelect">
+                <option value="">Pilih Prioritas</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+        </div>
+        <div class="form-item">
+            <button type="submit" id="btnAddTodo" class="btnSubmit">Add Task</button>
+        </div>
+
+        <div id="todoList" class="todoList">
+            <div class="card-todo">
+                <div class="card-content">
+                    <p class="card-todo-desc" id="todoDesc">Belajar Javascript setiap hari dari pagi sampai malam</p>
+                </div>
+                <div class="card-todo-footer">
+                    <span class="card-todo-time" id="todoTime"></span>
+                    <span class="card-todo-priority" id="todoPriority"></span>
+                    <input type="checkbox" name="status" id="todoStatus" class="card-todo-checkbox">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/script.js"></script>
+</body>
+
+</html>

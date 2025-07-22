@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  padding: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputTxt {
+  padding: 5px;
+  min-height: 40px;
+  border: 1px solid rgb(32, 30, 30);
+  border-radius: 5px;
+  outline: none;
+}
+
+.inputTxt.inputTodo {
+  font-family: "DM Sans", sans-serif;
+  background-color: rgb(255, 255, 255);
+}
+
+.inputTxt.inputSelect {
+  font-family: "poppins", sans-serif;
+  background-color: rgb(255, 255, 255);
+}
+
+.btnSubmit {
+  font-family: "poppins", sans-serif;
+  font-weight: 700;
+  padding: 5px;
+  cursor: pointer;
+  background-color: rgb(32, 30, 30);
+  color: rgb(240, 255, 255);
+  border: 1px solid rgb(32, 30, 30);
+  border-radius: 5px;
+}
+
+.btnSubmit:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(32, 30, 30, 0.8);
+}
+
+.todoList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-todo {
+  border: 1px solid rgba(32, 30, 30, 0.583);
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.card-todo-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-todo-checkbox {
+  height: 20px;
+  width: 20px;
+}
