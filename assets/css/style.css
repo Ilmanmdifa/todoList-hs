@@ -6,10 +6,11 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  font-size: 14px;
 }
 
 .container {
-  padding: 40px;
+  padding: 30px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -56,9 +57,20 @@ body {
   color: rgb(32, 30, 30, 0.8);
 }
 
-.todoList {
+.changeSectionContainer {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.todoList,
+.doneList {
   display: flex;
   flex-direction: column;
+  padding: 30px;
   gap: 10px;
 }
 
@@ -81,4 +93,8 @@ body {
 .card-todo-checkbox {
   height: 20px;
   width: 20px;
+}
+
+.emptyData {
+  margin: 0 auto;
 }

@@ -9,45 +9,40 @@
 </head>
 
 <body>
-    <div class="container">
-        <!-- <div class="form-item">
-            <label for="name">Nama</label>
-            <input type="text" name="name" id="inputName" class="inputTxt">
-        </div>
-        <div class="form-item">
-            <label for="job">Jabatan</label>
-            <input type="text" name="job" id="inputJob" class="inputTxt">
-        </div> -->
-        <div class="form-item">
-            <label for="todo">Kegiatan</label>
-            <textarea name="todo" id="inputTodo" class="inputTxt inputTodo"></textarea>
-        </div>
-        <div class="form-item">
-            <label for="priority">Level Prioritas</label>
-            <select name="priority" id="inputPriority" class="inputTxt inputSelect">
-                <option value="">Pilih Prioritas</option>
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-            </select>
-        </div>
-        <div class="form-item">
-            <button type="submit" id="btnAddTodo" class="btnSubmit">Add Task</button>
-        </div>
-
-        <div id="todoList" class="todoList">
-            <div class="card-todo">
-                <div class="card-content">
-                    <p class="card-todo-desc" id="todoDesc">Belajar Javascript setiap hari dari pagi sampai malam</p>
-                </div>
-                <div class="card-todo-footer">
-                    <span class="card-todo-time" id="todoTime"></span>
-                    <span class="card-todo-priority" id="todoPriority"></span>
-                    <input type="checkbox" name="status" id="todoStatus" class="card-todo-checkbox">
-                </div>
+    <form id="todoForm">
+        <div class="container">
+            <div class="form-item">
+                <label for="todo">Kegiatan</label>
+                <textarea name="todo" id="inputTodo" class="inputTxt inputTodo"></textarea>
+            </div>
+            <div class="form-item">
+                <label for="priority">Level Prioritas</label>
+                <select name="priority" id="inputPriority" class="inputTxt inputSelect">
+                    <option value="">Pilih Prioritas</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+            <div class="form-item">
+                <label for="date">Tanggal</label>
+                <input type="date" class="inputTxt" name="date" id="inputDate">
+            </div>
+            <div class="form-item">
+                <button type="submit" id="btnAddTodo" class="btnSubmit">Add Task</button>
             </div>
         </div>
+    </form>
+
+    <div class="changeSectionContainer">
+        <div class="btnChangeSection">
+            <button type="button" id="btnTodoList">Todo</button> | <button type="button" id="btnDoneList">Done</button>
+        </div>
+        <h2 id="sectionTitle">Todo</h2>
+        <button type="button" id="btnDeleteAll">Hapus Semua Data</button>
     </div>
+    <div id="todoList" class="todoList"></div>
+    <div id="doneList" class="doneList"></div>
 
     <script src="/assets/js/script.js"></script>
 </body>
