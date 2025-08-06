@@ -10,8 +10,8 @@ const timeWidget = () => {
       month: "long",
       day: "numeric",
     };
-    dateWidget.textContent = today.toLocaleDateString("en-US", options);
-    timeWidget.textContent = today.toLocaleTimeString("en-US", {
+    dateWidget.textContent = today.toLocaleDateString("id-ID", options);
+    timeWidget.textContent = today.toLocaleTimeString("id-ID", {
       hour12: false,
     });
   };
@@ -19,6 +19,26 @@ const timeWidget = () => {
   updateTime();
   const intervalId = setInterval(updateTime, 1000);
   return () => clearInterval(intervalId);
+};
+
+const formModalTodo = () => {
+  const modal = document.getElementById("formModal");
+  const btnModal = document.getElementById("btnModal");
+  const btnClose = document.querySelector(".close");
+
+  btnModal.addEventListener("click", () => {
+    modal.style.display = "block";
+  });
+
+  btnClose.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
 };
 
 const addTodo = (e) => {
@@ -47,7 +67,7 @@ const addTodo = (e) => {
   };
   /*
   todo list on another pages/modal
-  todo create modal for form input
+  todo style modal for form input
   todo style profile and show time
   todo create display priority
   todo styling the entire app
@@ -91,7 +111,7 @@ const loadTodoList = () => {
         <div class="card-todo-footer">
           <span class="card-todo-time">${todo.date}</span>
           <span class="card-todo-priority">${todo.priority}</span>
-          <button class="card-todo-delete">🗑</button>
+          <button class="card-todo-delete"><i class="fa-solid fa-trash"></i></button>
           <input type="checkbox" class="card-todo-checkbox" ${
             todo.status === "done" ? "checked" : ""
           }>
@@ -133,6 +153,7 @@ const loadDoneList = () => {
       <div class="card-todo-footer">
         <span class="card-todo-time">${todo.date}</span>
         <span class="card-todo-priority">${todo.priority}</span>
+        <button class="card-todo-delete"><i class="fa-solid fa-trash"></i></button>
         <input type="checkbox" class="card-todo-checkbox" ${
           todo.status === "done" ? "checked" : ""
         }>
@@ -222,6 +243,7 @@ const handleChangeSection = () => {
   });
 };
 
+formModalTodo();
 handleChangeSection();
 handleAddTodo();
 handleDeleteAll();

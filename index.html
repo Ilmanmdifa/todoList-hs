@@ -6,9 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Todolist</title>
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css'
+        integrity='sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=='
+        crossorigin='anonymous' />
 </head>
 
 <body>
+    <div class="form-modal" id="formModal">
+        <div class="form-modal-content">
+            <span class="close">&times;</span>
+            <form id="todoForm">
+                <div class="container-form">
+                    <div class="form-item">
+                        <label for="todo">Kegiatan</label>
+                        <textarea name="todo" id="inputTodo" class="inputTxt inputTodo"></textarea>
+                    </div>
+                    <div class="form-item">
+                        <label for="priority">Level Prioritas</label>
+                        <select name="priority" id="inputPriority" class="inputTxt inputSelect">
+                            <option value="">Pilih Prioritas</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div class="form-item">
+                        <label for="date">Tanggal</label>
+                        <input type="date" class="inputTxt" name="date" id="inputDate">
+                    </div>
+                    <div class="form-item">
+                        <button type="submit" id="btnAddTodo" class="btnSubmit">Add Task</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="container">
         <header>
             <div class="profile">
@@ -23,30 +55,6 @@
                 <span id="timeWidget">00:00:00</span>
             </div>
         </header>
-        <form id="todoForm">
-            <div class="container-form">
-                <div class="form-item">
-                    <label for="todo">Kegiatan</label>
-                    <textarea name="todo" id="inputTodo" class="inputTxt inputTodo"></textarea>
-                </div>
-                <div class="form-item">
-                    <label for="priority">Level Prioritas</label>
-                    <select name="priority" id="inputPriority" class="inputTxt inputSelect">
-                        <option value="">Pilih Prioritas</option>
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                    </select>
-                </div>
-                <div class="form-item">
-                    <label for="date">Tanggal</label>
-                    <input type="date" class="inputTxt" name="date" id="inputDate">
-                </div>
-                <div class="form-item">
-                    <button type="submit" id="btnAddTodo" class="btnSubmit">Add Task</button>
-                </div>
-            </div>
-        </form>
 
         <div class="changeSectionContainer">
             <div class="btnChangeSection">
@@ -58,7 +66,7 @@
         </div>
         <div id="todoList" class="todoList"></div>
         <div id="doneList" class="doneList"></div>
-
+        <button id="btnModal">Add Todo</button>
         <script src="/assets/js/script.js"></script>
     </div>
 </body>
