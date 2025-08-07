@@ -26,12 +26,16 @@ body {
   padding: 20px;
   border: 1px solid #888;
   border-radius: 10px;
-  width: 80%;
+  width: 50%;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .close {
   color: #aaa;
-  float: right;
   font-size: 28px;
   font-weight: bold;
 }
@@ -52,7 +56,7 @@ body {
 
 .container-form {
   padding: 30px;
-  width: 400px;
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -175,9 +179,9 @@ header {
     font-size: 16px;
   }
 
-  .container-form {
+  /* .container-form {
     width: 600px;
-  }
+  } */
 
   .todoList,
   .doneList {
