@@ -7,6 +7,52 @@
 body {
   font-family: "Poppins", sans-serif;
   font-size: 14px;
+  background-color: #f4f4f4;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  width: 50%;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.profile-name {
+  font-weight: 700;
+}
+
+.priority-category {
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.categories {
+  padding: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.low {
+  background-color: #6a994e;
+}
+
+.medium {
+  background-color: #fb8b24;
+}
+
+.high {
+  background-color: #bc4749;
+}
+
+.low,
+.medium,
+.high {
+  color: #f4f4f4;
 }
 
 .form-modal {
@@ -47,10 +93,22 @@ body {
   cursor: pointer;
 }
 
+.btn-modal {
+  position: fixed;
+  padding: 20px;
+  bottom: 0;
+  width: 50%;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  border: none;
+}
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
   width: 100%;
 }
 
@@ -114,9 +172,8 @@ body {
 .todoList,
 .doneList {
   display: flex;
-  width: 100%;
+  width: 50%;
   flex-direction: column;
-  padding: 30px;
   gap: 10px;
 }
 
@@ -128,7 +185,7 @@ body {
   gap: 10px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.75);
 }
 
 .card-todo-footer {
@@ -145,12 +202,9 @@ body {
   margin: 0 auto;
 }
 
-header {
-  padding: 20px;
-}
-
 .profile {
   display: flex;
+  align-items: center;
   gap: 5px;
 }
 
@@ -162,6 +216,7 @@ header {
   width: 40px;
   height: 40px;
   border-radius: 5px;
+  object-fit: cover;
 }
 
 .profile-detail {
@@ -172,19 +227,4 @@ header {
 .time {
   display: flex;
   flex-direction: column;
-}
-
-@media only screen and (min-width: 400px) {
-  body {
-    font-size: 16px;
-  }
-
-  /* .container-form {
-    width: 600px;
-  } */
-
-  .todoList,
-  .doneList {
-    width: 600px;
-  }
 }

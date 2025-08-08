@@ -68,9 +68,11 @@ const addTodo = (e) => {
   /*
   todo list on another pages/modal
   todo style modal for form input
-  todo style profile and show time
   todo create display priority
   todo styling the entire app
+
+  todo style todo card 
+  todo button switch list and delete all
   */
 
   let todos = JSON.parse(localStorage.getItem("todos")) || [];
