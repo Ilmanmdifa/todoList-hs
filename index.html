@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <title>Your Todolist</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -60,15 +60,15 @@
         <div class="priority-category">
             <div class="categories low">
                 <span class="">Low</span>
-                <p>0</p>
+                <p id="lowCount">0</p>
             </div>
             <div class="categories medium">
                 <span class="medium">Medium</span>
-                <p>0</p>
+                <p id="mediumCount">0</p>
             </div>
             <div class="categories high">
                 <span class="high">High</span>
-                <p>0</p>
+                <p id="highCount">0</p>
             </div>
         </div>
 
@@ -78,11 +78,16 @@
                     id="btnDoneList">Done</button>
             </div>
             <h2 id="sectionTitle">Todo</h2>
+            <div class="filter-date">
+                <label for="filterDate">Filter by Date:</label>
+                <input type="date" id="filterDate" class="inputTxt">
+                <button type="button" id="btnClearDateFilter" aria-label="Clear Date Filter">Clear</button>
+            </div>
             <button type="button" id="btnDeleteAll">Hapus Semua Data</button>
         </div>
         <div id="todoList" class="todoList"></div>
         <div id="doneList" class="doneList"></div>
-        <button id="btnModal" class="btn-modal">Add Todo</button>
+        <button id="btnModal" class="btn-modal"><i class="fa-solid fa-plus"></i></button>
         <script src="/assets/js/script.js"></script>
     </div>
 </body>

@@ -12,10 +12,16 @@ body {
 
 header {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  padding: 20px;
-  width: 50%;
-  border: 1px solid rgb(0, 0, 0);
+  align-items: center;
+  padding: 15px;
+  max-width: 600px;
+  width: 100%;
+  margin: 15px auto;
+  border: 1px solid #333;
+  background: white;
+  border-radius: 8px;
 }
 
 .profile-name {
@@ -93,17 +99,6 @@ header {
   cursor: pointer;
 }
 
-.btn-modal {
-  position: fixed;
-  padding: 20px;
-  bottom: 0;
-  width: 50%;
-  background-color: black;
-  color: white;
-  border-radius: 5px;
-  border: none;
-}
-
 .container {
   display: flex;
   flex-direction: column;
@@ -144,6 +139,70 @@ header {
   background-color: rgb(255, 255, 255);
 }
 
+.filter-date {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-modal {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #333;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s, transform 0.2s;
+  z-index: 1000;
+}
+
+.btn-modal:hover {
+  background-color: #555;
+  transform: scale(1.1);
+}
+
+.btnSubmit,
+.btnModal,
+#btnClearDateFilter {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  padding: 8px 16px;
+  cursor: pointer;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btnSubmit:hover,
+.btnModal:hover {
+  background-color: white;
+  color: #333;
+  border: 1px solid #333;
+}
+
+.btnChangeSection button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.btnChangeSection button:hover {
+  text-decoration: underline;
+}
+
 .btnSubmit {
   font-family: "poppins", sans-serif;
   font-weight: 700;
@@ -158,6 +217,19 @@ header {
 .btnSubmit:hover {
   background-color: rgb(255, 255, 255);
   color: rgb(32, 30, 30, 0.8);
+}
+
+#btnDeleteAll {
+  background-color: #dc3545;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#btnDeleteAll:hover {
+  background-color: #c82333;
 }
 
 .changeSectionContainer {
@@ -198,6 +270,60 @@ header {
   width: 20px;
 }
 
+.card-todo {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 15px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-todo-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.card-todo-priority.priority-low {
+  color: #283618;
+  background-color: rgba(162, 222, 93, 0.333);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.card-todo-priority.priority-medium {
+  color: #856404;
+  background-color: #e9c46a;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.card-todo-priority.priority-high {
+  color: #721c24;
+  background-color: #f8d7da;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.card-todo-checkbox {
+  height: 24px;
+  width: 24px;
+}
+
+.card-todo-delete {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 8px;
+}
+
+.card-todo-delete:hover,
+.card-todo-delete:focus {
+  color: #c82333;
+}
 .emptyData {
   margin: 0 auto;
 }
@@ -227,4 +353,79 @@ header {
 .time {
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .priority-category {
+    width: 80%;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .categories {
+    padding: 10px;
+    width: 100%;
+  }
+
+  .categories p {
+    font-size: 0.9rem;
+  }
+
+  .form-modal-content {
+    width: 95%;
+    margin: 15% auto;
+    padding: 10px;
+  }
+
+  .container-form {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .inputTxt {
+    font-size: 0.9rem;
+    min-height: 40px;
+  }
+
+  .btnSubmit,
+  #btnClearDateFilter,
+  #btnDeleteAll {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+
+  .filter-date {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .todoList,
+  .doneList {
+    padding: 10px;
+    width: 100%;
+  }
+
+  .card-todo {
+    padding: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-modal {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    bottom: 15px;
+    right: 15px;
+  }
 }

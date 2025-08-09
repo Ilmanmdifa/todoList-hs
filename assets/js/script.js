@@ -41,6 +41,48 @@ const formModalTodo = () => {
   };
 };
 
+const updatePriorityCounts = () => {
+  const todos = JSON.parse(localStorage.getItem("todos")) || [];
+  console.log(todos);
+  const lowCount = todos.filter((todo) => todo.priority === "low").length;
+  const mediumCount = todos.filter((todo) => todo.priority === "medium").length;
+  const highCount = todos.filter((todo) => todo.priority === "high").length;
+
+  const lowCountElement = document.getElementById("lowCount");
+  const mediumCountElement = (document.getElementById(
+    "mediumCount"
+  ).textContent = mediumCount);
+  const highCountElement = (document.getElementById("highCount").textContent =
+    highCount);
+  lowCountElement.textContent = lowCount;
+  mediumCountElement.textContent = mediumCount;
+  highCountElement.textContent = highCount;
+};
+
+const createTodoCard = (todo) => {
+  const card = document.createElement("div");
+  card.classList.add("card-todo");
+  card.setAttribute("data-index", todo.id);
+  card.innerHTML = `
+    <div class="card-content">
+      <p class="card-todo-desc" style="${
+        todo.status === "done" ? "text-decoration: line-through;" : ""
+      }">${todo.todo}</p>
+    </div>
+    <div class="card-todo-footer">
+      <span class="card-todo-time">${todo.date}</span>
+      <span class="card-todo-priority priority-${todo.priority}">${
+    todo.priority
+  }</span>
+      <button class="card-todo-delete" aria-label="Delete Task"><i class="fa-solid fa-trash"></i></button>
+      <input type="checkbox" class="card-todo-checkbox" ${
+        todo.status === "done" ? "checked" : ""
+      } aria-label="Mark task as ${todo.status === "done" ? "undone" : "done"}">
+    </div>
+  `;
+  return card;
+};
+
 const addTodo = (e) => {
   e.preventDefault();
 
@@ -65,15 +107,6 @@ const addTodo = (e) => {
     priority: priority,
     status: "todo",
   };
-  /*
-  todo list on another pages/modal
-  todo style modal for form input
-  todo create display priority
-  todo styling the entire app
-
-  todo style todo card 
-  todo button switch list and delete all
-  */
 
   let todos = JSON.parse(localStorage.getItem("todos")) || [];
   todos.push(dataTodo);
@@ -86,42 +119,36 @@ const addTodo = (e) => {
   document.getElementById("inputDate").value = "";
 
   loadTodoList();
+  updatePriorityCounts();
 };
 
+let currentDateFilter = null;
 const loadTodoList = () => {
   const todoList = document.getElementById("todoList");
   const todos = JSON.parse(localStorage.getItem("todos")) || [];
 
-  const todoItems = todos.filter((todo) => todo.status === "todo");
+  let filteredTodos = todos.filter((todo) => todo.status === "todo");
+
+  if (currentDateFilter) {
+    filteredTodos = filteredTodos.filter(
+      (todo) => todo.date === currentDateFilter
+    );
+  }
 
   todoList.innerHTML = "";
 
-  if (todoItems.length === 0) {
+  if (filteredTodos.length === 0) {
     todoList.innerHTML = `<p class="emptyData">Tidak ada data</p>`;
   } else {
-    todoItems.forEach((todo) => {
+    filteredTodos.forEach((todo) => {
       if (todo.status === "todo") {
-        const cardTodoElement = document.createElement("div");
-        cardTodoElement.classList.add("card-todo");
-        cardTodoElement.setAttribute("data-index", todo.id);
-        cardTodoElement.innerHTML = `
-        <div class="card-content">
-          <p class="card-todo-desc" style="${
-            todo.status === "done" ? "text-decoration: line-through;" : ""
-          }">${todo.todo}</p>
-        </div>
-        <div class="card-todo-footer">
-          <span class="card-todo-time">${todo.date}</span>
-          <span class="card-todo-priority">${todo.priority}</span>
-          <button class="card-todo-delete"><i class="fa-solid fa-trash"></i></button>
-          <input type="checkbox" class="card-todo-checkbox" ${
-            todo.status === "done" ? "checked" : ""
-          }>
-        </div>
-    `;
-        todoList.appendChild(cardTodoElement);
-        const deleteBtn = cardTodoElement.querySelector(".card-todo-delete");
-        deleteBtn.addEventListener("click", () => deleteTodo(todo.id));
+        const card = createTodoCard(todo);
+        todoList.appendChild(card);
+        const deleteBtn = card.querySelector(".card-todo-delete");
+        deleteBtn.addEventListener("click", () => {
+          deleteTodo(todo.id);
+          updatePriorityCounts();
+        });
       }
     });
   }
@@ -135,33 +162,21 @@ const loadDoneList = () => {
 
   const todos = JSON.parse(localStorage.getItem("todos")) || [];
 
-  const filteredList = todos.filter((todo) => todo.status === "done");
+  const doneItems = todos.filter((todo) => todo.status === "done");
 
   doneList.innerHTML = "";
 
-  if (filteredList.length === 0) {
+  if (doneItems.length === 0) {
     doneList.innerHTML = `<p class="emptyData">Tidak ada data</p>`;
   } else {
-    filteredList.forEach((todo) => {
-      const cardTodoElement = document.createElement("div");
-      cardTodoElement.classList.add("card-todo");
-      cardTodoElement.setAttribute("data-index", todo.id);
-      cardTodoElement.innerHTML = `
-      <div class="card-content">
-        <p class="card-todo-desc" style="${
-          todo.status === "done" ? "text-decoration: line-through;" : ""
-        }">${todo.todo}</p>
-      </div>
-      <div class="card-todo-footer">
-        <span class="card-todo-time">${todo.date}</span>
-        <span class="card-todo-priority">${todo.priority}</span>
-        <button class="card-todo-delete"><i class="fa-solid fa-trash"></i></button>
-        <input type="checkbox" class="card-todo-checkbox" ${
-          todo.status === "done" ? "checked" : ""
-        }>
-      </div>
-  `;
-      doneList.appendChild(cardTodoElement);
+    doneItems.forEach((todo) => {
+      const card = createTodoCard(todo);
+      doneList.appendChild(card);
+      const deleteBtn = card.querySelector(".card-todo-delete");
+      deleteBtn.addEventListener("click", () => {
+        deleteTodo(todo.id);
+        updatePriorityCounts();
+      });
     });
   }
 
@@ -215,12 +230,29 @@ const deleteAllTodo = () => {
   localStorage.clear();
   loadTodoList();
   loadDoneList();
+  updatePriorityCounts();
 };
 
 const handleDeleteAll = () => {
   const btnDeleteAll = document.getElementById("btnDeleteAll");
   btnDeleteAll.addEventListener("click", () => {
     if (confirm("Are you sure want to delete all task?")) deleteAllTodo();
+  });
+};
+
+const handleDateFilter = () => {
+  const filterDate = document.getElementById("filterDate");
+  const btnClearDateFilter = document.getElementById("btnClearDateFilter");
+
+  filterDate.addEventListener("change", () => {
+    currentDateFilter = filterDate.value;
+    loadTodoList();
+  });
+
+  btnClearDateFilter.addEventListener("click", () => {
+    currentDateFilter = null;
+    filterDate.value = "";
+    loadTodoList();
   });
 };
 
@@ -249,6 +281,8 @@ formModalTodo();
 handleChangeSection();
 handleAddTodo();
 handleDeleteAll();
+updatePriorityCounts();
+handleDateFilter();
 window.onload = () => {
   document.getElementById("doneList").style.display = "none";
   loadTodoList();
