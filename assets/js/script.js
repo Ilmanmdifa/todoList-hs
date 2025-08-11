@@ -125,6 +125,7 @@ const addTodo = (e) => {
 let currentDateFilter = null;
 const loadTodoList = () => {
   const todoList = document.getElementById("todoList");
+
   const todos = JSON.parse(localStorage.getItem("todos")) || [];
 
   let filteredTodos = todos.filter((todo) => todo.status === "todo");
@@ -162,7 +163,11 @@ const loadDoneList = () => {
 
   const todos = JSON.parse(localStorage.getItem("todos")) || [];
 
-  const doneItems = todos.filter((todo) => todo.status === "done");
+  let doneItems = todos.filter((todo) => todo.status === "done");
+
+  if (currentDateFilter) {
+    doneItems = doneItems.filter((todo) => todo.date === currentDateFilter);
+  }
 
   doneList.innerHTML = "";
 
@@ -247,12 +252,14 @@ const handleDateFilter = () => {
   filterDate.addEventListener("change", () => {
     currentDateFilter = filterDate.value;
     loadTodoList();
+    loadDoneList();
   });
 
   btnClearDateFilter.addEventListener("click", () => {
     currentDateFilter = null;
     filterDate.value = "";
     loadTodoList();
+    loadDoneList();
   });
 };
 
